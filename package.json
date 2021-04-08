@@ -33,6 +33,11 @@
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   },
+  "vue": {
+    "pwa": {
+      "themeColor": "#ee2244"
+    }
+  },
   "eslintConfig": {
     "root": true,
     "env": {
