@@ -4,7 +4,7 @@
   "repository": "https://github.com/blitztime/site",
   "author": "Artemis21 <artemisdev21@gmail.com>",
   "license": "MIT",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",

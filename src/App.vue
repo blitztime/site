@@ -2,9 +2,10 @@
 div.root
     router-view
     footer.footer
-        | © Copyright 2021 !{' '}
-        a(href='https://artemisdev.xyz') Artemis
-        | .
+        .footer__text
+            | © Copyright 2021
+            a.footer__link(href='https://artemisdev.xyz') Artemis
+            | .
 </template>
 
 <style lang="sass">
@@ -17,8 +18,18 @@ body
     margin: 0
 
 .footer
-    background: #111
+    background: $footer-colour
     padding: 0.5rem
     text-align: center
-    height: 1.2rem
+    height: 2rem
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+.footer__link
+    background: $theme-colour
+    color: $bg-colour
+    padding: 5px
+    margin: 5px
 </style>

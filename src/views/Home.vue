@@ -42,7 +42,7 @@ export default {
     flex-direction: column
     align-items: center
     justify-content: center
-    min-height: calc(100vh - 2.2rem)
+    min-height: calc(100vh - 3rem)
 
 .logo
     width: 10rem
