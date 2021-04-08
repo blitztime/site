@@ -1,6 +1,6 @@
 <template lang="pug">
 main
-    | Welcome to Timer.Red!
+    | Welcome to Blitz.Red!
 </template>
 
 <script>

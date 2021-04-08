@@ -1,6 +1,6 @@
 {
-  "name": "timer.red",
-  "description": "Timer.Red: A frontend to the Blitztime API, using Vue.js.",
+  "name": "blitz.red",
+  "description": "Blitz.Red: A frontend to the Blitztime API, using Vue.js.",
   "repository": "https://github.com/blitztime/site",
   "author": "Artemis21 <artemisdev21@gmail.com>",
   "license": "MIT",

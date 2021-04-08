@@ -1,6 +1,6 @@
 {
-    "name": "Timer.Red Live Game Timer",
-    "short_name": "timer.red",
+    "name": "Blitz.Red Live Game Timer",
+    "short_name": "blitz.red",
     "icons": [
         {
             "src": "/img/icons/android-chrome-192x192.png",

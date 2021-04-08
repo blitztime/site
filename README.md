@@ -1,4 +1,4 @@
-# Blitztime Web Interface (timer.red)
+# Blitztime Web Interface (blitz.red)
 
 This is a web interface to the Blitztime API, written using Vue.
 
