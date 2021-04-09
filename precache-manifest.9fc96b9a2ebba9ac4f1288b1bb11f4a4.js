@@ -4,20 +4,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/browserconfig.xml"
   },
   {
-    "revision": "5c118d4b97f83442ce45",
-    "url": "/css/app.423f7297.css"
+    "revision": "78a77b865f25d3589edb",
+    "url": "/css/app.2cd06c21.css"
   },
   {
     "revision": "d88fd3b7e717273283f15495e01c5f79",
     "url": "/img/logo.svg"
   },
   {
-    "revision": "597e72c16025c7d723cd0b855f892e48",
+    "revision": "841f1b36a598e5e743de695ccb5c08a3",
     "url": "/index.html"
   },
   {
-    "revision": "5c118d4b97f83442ce45",
-    "url": "/js/app.6ebc3ef8.js"
+    "revision": "78a77b865f25d3589edb",
+    "url": "/js/app.8b0eb3a4.js"
   },
   {
     "revision": "c85547041817ab8b677d",
