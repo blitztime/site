@@ -1,6 +1,6 @@
 <template lang="pug">
 div.root
-    router-view
+    router-view.main
     footer.footer
         .footer__text
             | © Copyright 2021
@@ -16,6 +16,9 @@ body
     color: $theme-colour
     background: $bg-colour
     margin: 0
+
+.main
+    min-height: calc(100vh - 3rem)
 
 .footer
     background: $footer-colour

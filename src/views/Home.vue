@@ -13,7 +13,7 @@ main.intro
 <script>
 import { HttpClient } from 'blitztime';
 
-const client = new HttpClient('https://api.blitz.red');
+const client = new HttpClient('http://api.blitz.red.local');
 
 export default {
     name: 'Home',
@@ -42,7 +42,6 @@ export default {
     flex-direction: column
     align-items: center
     justify-content: center
-    min-height: calc(100vh - 3rem)
 
 .logo
     width: 10rem
