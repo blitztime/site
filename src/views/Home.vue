@@ -13,7 +13,7 @@ main.intro
 <script>
 import { HttpClient } from 'blitztime';
 
-const client = new HttpClient('http://api.blitz.red.local');
+const client = new HttpClient('http://api.blitz.red');
 
 export default {
     name: 'Home',

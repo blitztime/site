@@ -39,6 +39,6 @@ export function getConnection(timerId) {
             timer: timerId,
             token: token,
         },
-        'http://api.blitz.red.local'
+        'http://api.blitz.red'
     );
 }

@@ -20,7 +20,7 @@ import { Duration } from 'luxon';
 import Checkbox from '../components/Checkbox';
 import StageSettings from '../components/StageSettings';
 
-const client = new HttpClient('http://api.blitz.red.local');
+const client = new HttpClient('http://api.blitz.red');
 
 export default {
     name: 'Create',
