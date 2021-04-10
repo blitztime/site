@@ -4,24 +4,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/browserconfig.xml"
   },
   {
-    "revision": "78a77b865f25d3589edb",
-    "url": "/css/app.2cd06c21.css"
+    "revision": "1fb8b899f6c22e500055",
+    "url": "/css/app.ee6b6e5d.css"
   },
   {
     "revision": "d88fd3b7e717273283f15495e01c5f79",
     "url": "/img/logo.svg"
   },
   {
-    "revision": "841f1b36a598e5e743de695ccb5c08a3",
+    "revision": "18318b399cfb57e226ed9bd1a662de29",
     "url": "/index.html"
   },
   {
-    "revision": "78a77b865f25d3589edb",
-    "url": "/js/app.8b0eb3a4.js"
+    "revision": "1fb8b899f6c22e500055",
+    "url": "/js/app.9fc5e30e.js"
   },
   {
-    "revision": "c85547041817ab8b677d",
-    "url": "/js/chunk-vendors.d4814998.js"
+    "revision": "bc741341d2a887dd5277",
+    "url": "/js/chunk-vendors.553e1795.js"
   },
   {
     "revision": "a92716794a4e79097cd5b4ab3715e96a",
