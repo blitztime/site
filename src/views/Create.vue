@@ -6,7 +6,7 @@ main.create
             :stage='stage', :expanded='idx === expandedStage', :idx='idx',
             @expandStage='expandedStage = idx',
             @removeStage='stages.splice(idx, 1)')
-    div.add_stage(@click='addStage') +
+    .add_stage(@click='addStage') +
     .as_player_input
         span Join as Player 1?
         Checkbox(type='checkbox', v-model='asPlayer')
@@ -41,14 +41,13 @@ export default {
     },
     methods: {
         async start() {
-            console.log(this.stages);
             const stageSettings = this.stages.map(StageSettingsModel.create);
-            console.log(stageSettings);
             const creds = await client.createTimer(
                 stageSettings,
                 !this.asPlayer
             );
-            storeConnection(creds);
+            storeConnection(creds, this.asPlayer ? 0 : -1);
+            this.$router.push(`/timer/${creds.timer}`);
         },
         addStage() {
             this.stages.push({
@@ -76,14 +75,14 @@ export default {
     cursor: pointer
     background: $theme-colour
     color: $bg-colour
-    width: 360px
+    width: $stage-settings-width
     box-sizing: border-box
     text-align: center
 
 .as_player_input
     display: flex
     justify-content: space-evenly
-    width: 360px
+    width: $stage-settings-width
     padding: 5px 0
 
 .button

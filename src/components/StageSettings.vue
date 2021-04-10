@@ -1,7 +1,7 @@
 <template lang="pug">
 table.stage.stage--expanded(v-if='expanded')
     tr.stage__header
-        td: span Stage {{ idx + 1 }} - Start Turn {{ stage.startTurn }}
+        td: span Stage {{ idx + 1 }} - Turn {{ stage.startTurn }}
         td.remove_btn(v-if='idx !== 0'): span(@click='$emit("removeStage")') -
         td.placeholder(v-else)
     tr(v-if='idx !== 0')
@@ -16,9 +16,9 @@ table.stage.stage--expanded(v-if='expanded')
     tr
         td: span Fixed per Turn
         td: TimeInput(v-model='stage.fixedTimePerTurn')
-div.stage.stage--collapsed.stage__header(v-else)
+.stage.stage--collapsed.stage__header(v-else)
     span(@click='$emit("expandStage")')
-        | Stage {{ idx + 1 }} - Start Turn {{ stage.startTurn }}
+        | Stage {{ idx + 1 }} - Turn {{ stage.startTurn }}
     span.remove_btn(@click='$emit("removeStage")', v-if='idx !== 0') -
 </template>
 
@@ -35,7 +35,7 @@ export default {
 @import '../sass/_variables'
 
 .stage
-    width: 360px
+    width: $stage-settings-width
     box-sizing: border-box
 
 .stage--expanded

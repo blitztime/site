@@ -1,5 +1,5 @@
 <template lang="pug">
-div.time_input
+.time_input
     DigitInput(v-model='tenHours', @input='onInput')
     DigitInput(v-model='hours', @input='onInput')
     | h

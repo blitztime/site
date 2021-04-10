@@ -1,10 +1,11 @@
 <template lang="pug">
-div.root
+.root
     router-view.main
     footer.footer
         .footer__text
             | © Copyright 2021
-            a.footer__link(href='https://artemisdev.xyz') Artemis
+            a.footer__link(href='https://artemisdev.xyz', target="_blank")
+                | Artemis
             | .
 </template>
 

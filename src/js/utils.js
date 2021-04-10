@@ -27,13 +27,14 @@ export function deleteCookie(name) {
 }
 
 /** Store socket credentials in cookies. */
-export function storeConnection(creds) {
-    setCookie(`timer-${creds.timer}`, creds.token);
+export function storeConnection(creds, side) {
+    setCookie(`timer-${creds.timer}-token`, creds.token);
+    setCookie(`timer-${creds.timer}-side`, side);
 }
 
 /** Get a connection to a timer. */
 export function getConnection(timerId) {
-    const token = getCookie(`timer-${timerId}`);
+    const token = getCookie(`timer-${timerId}-token`);
     return new TimerConnection(
         {
             timer: timerId,
@@ -41,4 +42,9 @@ export function getConnection(timerId) {
         },
         'https://api.blitz.red'
     );
+}
+
+/** Get the side the connection to a timer is for. */
+export function getSide(timerId) {
+    return Number.parseInt(getCookie(`timer-${timerId}-side`));
 }

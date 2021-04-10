@@ -2,8 +2,8 @@
 label(:for='`checkbox-${_uid}`')
     input.hidden_checkbox(
         type='checkbox', v-model='inputValue', :id='`checkbox-${_uid}`'
-        @input='$emit("input", $event.target.value)')
-    div.input
+        @input='$emit("input", $event.target.checked)')
+    .input
 </template>
 
 <script>
