@@ -8,6 +8,7 @@ label(:for='`checkbox-${_uid}`')
 
 <script>
 export default {
+    name: 'Checkbox',
     props: ['value'],
     data: function () {
         return {

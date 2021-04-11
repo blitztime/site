@@ -2,16 +2,16 @@
 .side
     h2.title Player {{ number + 1 }}
         span.alert(v-if='side && !side.connected') !{' '}- Not Connected
-        span.alert(v-if='isUser') !{' '}- You
+        span.alert(v-if='userSide == number') !{' '}- You
     .side__timer(v-if='side')
-        span.side__timer__title Turn Timer
+        span.side__timer__title(v-if='!gameOver') Turn Timer
         Clock(
-            :value='side.turnTimeRemaining',
-            :size='side.isTurn ? (side.turnTimeRemaining ? "big" : "small") : "medium"')
+            :getValue='() => { return side.turnTimeRemaining() }',
+            v-if='!gameOver')
         span.side__timer__title Game Timer
         Clock(
-            :value='side.totalTimeRemaining',
-            :size='side.isTurn ? (side.turnTimeRemaining ? "small" : "big") : "medium"')
+            :getValue='() => { return side.totalTimeRemaining() }',
+            @timedOut='onTimeOut')
     .side__invite(v-else)
         h3.side__invite__title Not Joined
         p.side__invite__description This link can be used to join:
@@ -23,13 +23,20 @@ import Clock from './Clock';
 import Copyable from './Copyable';
 
 export default {
+    name: 'TimerSide',
     components: { Clock, Copyable },
-    props: ['side', 'number', 'isUser'],
+    props: ['side', 'number', 'userSide', 'gameOver'],
     data: function () {
         const timer = this.$route.params.id;
         return {
             link: `${window.location.origin}/t/${timer}/${this.number}`,
         };
+    },
+    methods: {
+        onTimeOut() {
+            if (this.userSide < 0) return;
+            this.$emit('timedOut');
+        },
     },
 };
 </script>
@@ -57,7 +64,6 @@ export default {
     &:not(:last-of-type)
         margin-right: 0
 
-
 @media only screen and (max-width: 800px)
     .side
         width: auto
@@ -71,6 +77,8 @@ export default {
     align-items: center
     justify-content: center
     flex-grow: 999
+    width: 100%
+    text-align: center
 
 .side__invite__title
     margin: 0

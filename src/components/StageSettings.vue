@@ -2,7 +2,8 @@
 table.stage.stage--expanded(v-if='expanded')
     tr.stage__header
         td: span Stage {{ idx + 1 }} - Turn {{ stage.startTurn }}
-        td.remove_btn(v-if='idx !== 0'): span(@click='$emit("removeStage")') -
+        td.remove_btn_wrapper(v-if='idx !== 0')
+            span.remove_btn(@click='$emit("removeStage")') -
         td.placeholder(v-else)
     tr(v-if='idx !== 0')
         td: span Start Turn
@@ -17,7 +18,7 @@ table.stage.stage--expanded(v-if='expanded')
         td: span Fixed per Turn
         td: TimeInput(v-model='stage.fixedTimePerTurn')
 .stage.stage--collapsed.stage__header(v-else)
-    span(@click='$emit("expandStage")')
+    span.stage__header__title(@click='$emit("expandStage")')
         | Stage {{ idx + 1 }} - Turn {{ stage.startTurn }}
     span.remove_btn(@click='$emit("removeStage")', v-if='idx !== 0') -
 </template>
@@ -26,6 +27,7 @@ table.stage.stage--expanded(v-if='expanded')
 import TimeInput from './TimeInput';
 
 export default {
+    name: 'StageSettings',
     props: ['stage', 'idx', 'expanded'],
     components: { TimeInput },
 };
@@ -45,7 +47,6 @@ export default {
         padding: 5px
 
 .stage--collapsed
-    padding: 5px
     cursor: pointer
     display: flex
     justify-content: space-between
@@ -54,10 +55,29 @@ export default {
     background: $theme-colour
     color: $bg-colour
 
+.stage__header__title
+    flex-grow: 999
+    padding: 5px
+    &:hover
+        text-decoration: underline
+
+.stage--expanded .remove_btn_wrapper
+    display: flex
+    justify-content: flex-end
+    padding: 0
+
 .remove_btn
-    display: block
-    text-align: right
-    margin: 0 0.5rem
+    cursor: pointer
+    padding: 5px 10px
+    &:hover
+        background: $bg-colour
+        color: $theme-colour
+
+.stage--expanded .remove_btn
+    margin-bottom: 1px
+
+.stage--collapsed .remove_btn
+    margin-right: 1px
 
 .number_input
     background: transparent

@@ -4,6 +4,7 @@ span.content(@click='copy') {{ displayContent }}
 
 <script>
 export default {
+    name: 'Copyable',
     props: ['content'],
     data: function () {
         return { displayContent: this.content };

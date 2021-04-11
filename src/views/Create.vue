@@ -20,7 +20,7 @@ import { Duration } from 'luxon';
 import Checkbox from '../components/Checkbox';
 import StageSettings from '../components/StageSettings';
 
-const client = new HttpClient('https://api.blitz.red');
+const client = new HttpClient(process.env.VUE_APP_API_URL);
 
 export default {
     name: 'Create',
@@ -56,6 +56,7 @@ export default {
                 incrementPerTurn: Duration.fromMillis(0),
                 initialTime: Duration.fromMillis(0),
             });
+            this.expandedStage = this.stages.length - 1;
         },
     },
 };

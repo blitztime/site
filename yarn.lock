@@ -1068,10 +1068,10 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
-blitztime@0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/blitztime/-/blitztime-0.3.5.tgz#4f343548ff3ac0d6f33b664cc3905a7fae49c932"
-  integrity sha512-uJtZMfYOmERr7bdSf1TZS1wJ7GWdtA6U8x5bcNS6mZiSOKTcFR1DVCKEdGTjBb3URNYO6fGGiOindZIqr1HUNw==
+blitztime@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/blitztime/-/blitztime-0.5.0.tgz#8752218692bc81a037799dd2d4f9ce8c2d06fe70"
+  integrity sha512-iBainf0YxBOlSeh2VxyxBV21V1mZ4XfZFjqv6Jeg58C/NheZXlNeOEYMGEbWaRbapAcX1YDLuSM/PVZizpWe5g==
   dependencies:
     "@types/luxon" "^1.26.3"
     axios "^0.21.1"

@@ -26,7 +26,14 @@ export function deleteCookie(name) {
     setCookie(name, '', { daysLasts: 0 });
 }
 
-/** Store socket credentials in cookies. */
+/** Store socket credentials in cookies.
+ *
+ * Side should be:
+ *  -2: Observer
+ *  -1: Manager
+ *   0: Home
+ *   1: Away
+ */
 export function storeConnection(creds, side) {
     setCookie(`timer-${creds.timer}-token`, creds.token);
     setCookie(`timer-${creds.timer}-side`, side);
@@ -40,11 +47,13 @@ export function getConnection(timerId) {
             timer: timerId,
             token: token,
         },
-        'https://api.blitz.red'
+        process.env.VUE_APP_API_URL
     );
 }
 
 /** Get the side the connection to a timer is for. */
 export function getSide(timerId) {
-    return Number.parseInt(getCookie(`timer-${timerId}-side`));
+    const raw = getCookie(`timer-${timerId}-side`);
+    if (raw === undefined) return -2;
+    return Number.parseInt(raw);
 }

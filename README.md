@@ -23,3 +23,19 @@ Lint (please make sure to do this before committing):
 ```
 yarn lint
 ```
+
+## Configuration
+
+You should put configuration in files named `.env.production.local` and/or `.env.development.local`, depending on how you are running it (you can also just use `.env.local`). The following settings are available:
+
+| Name                | Dev default             | Prod default            |
+|:-------------------:|:-----------------------:|:-----------------------:|
+| `API_URL`           | `http://localhost:8000` | `https://api.blitz.red` |
+
+The default `CMS_URL` is `https://raw.githubusercontent.com/polympics/wiki/build` (note no `index.json`).
+
+These should all be prefixed with `VUE_APP_`. Example file:
+
+```env
+VUE_APP_API_URL=http://api.blitz.red.local
+```

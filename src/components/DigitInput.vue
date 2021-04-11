@@ -6,6 +6,7 @@ input.input(
 
 <script>
 export default {
+    name: 'DigitInput',
     props: {
         value: Number,
         max: {

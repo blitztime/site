@@ -13,7 +13,7 @@ main.intro
 <script>
 import { HttpClient } from 'blitztime';
 
-const client = new HttpClient('https://api.blitz.red');
+const client = new HttpClient(process.env.VUE_APP_API_URL);
 
 export default {
     name: 'Home',

@@ -25,7 +25,7 @@ const router = new VueRouter({
                 if (!['0', '1', undefined].includes(side)) {
                     return next({ name: 'Not Found' });
                 }
-                const client = new HttpClient('https://api.blitz.red');
+                const client = new HttpClient(process.env.VUE_APP_API_URL);
                 const timer = await client.getTimer(id);
                 if (!timer) return next({ name: 'Not Found' });
                 if (to.params.side === '0' && timer.home) {

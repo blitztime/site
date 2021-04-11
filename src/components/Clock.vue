@@ -1,23 +1,66 @@
 <template lang="pug">
-.clock(:class='"clock--" + size')
-    span.numbers(v-if='hours') {{ hours }}:
-    span.numbers {{ minutes }}:
-    span.numbers {{ seconds }}
+.clock
+    .digit_wrapper(v-if='parts.showHours'): transition(name='spin')
+        span.digit(:key='`${_uid}-${parts.tenHours}th`') {{ parts.tenHours }}
+    .digit_wrapper(v-if='parts.showHours'): transition(name='spin')
+        span.digit(:key='`${_uid}-${parts.hours}h`') {{ parts.hours }}
+    span.digit(v-if='parts.showHours') :
+    .digit_wrapper: transition(name='spin')
+        span.digit(:key='`${_uid}-${parts.tenMinutes}tm`')
+            | {{ parts.tenMinutes }}
+    .digit_wrapper: transition(name='spin')
+        span.digit(:key='`${_uid}-${parts.minutes}m`') {{ parts.minutes }}
+    span.digit :
+    .digit_wrapper: transition(name='spin')
+        span.digit(:key='`${_uid}-${parts.tenSeconds}ts`')
+            | {{ parts.tenSeconds }}
+    .digit_wrapper: transition(name='spin')
+        span.digit(:key='`${_uid}-${parts.seconds}s`') {{ parts.seconds }}
 </template>
 
 <script>
+import { Duration } from 'luxon';
+
 export default {
-    name: 'TimeInput',
-    props: ['value', 'size'],
+    name: 'Clock',
+    props: ['getValue'],
+    mounted() {
+        this.$options.updater = window.setInterval(this.forceUpdate, 1000);
+    },
+    beforeDestroy() {
+        window.clearInterval(this.$options.updater);
+    },
     data: function () {
-        const hms = this.value
-            .shiftTo('hours', 'minutes', 'seconds')
-            .toObject();
         return {
-            hours: hms.hours ? hms.hours.toString().padStart(2, '0') : null,
-            minutes: hms.minutes.toString().padStart(2, '0'),
-            seconds: hms.seconds.toString().padStart(2, '0'),
+            value: this.getValue(),
         };
+    },
+    computed: {
+        parts() {
+            const hms = this.value
+                .shiftTo('hours', 'minutes', 'seconds', 'milliseconds')
+                .toObject();
+            return {
+                showHours: hms.hours !== 0,
+                tenHours: Math.floor(hms.hours / 10),
+                hours: hms.hours % 10,
+                tenMinutes: Math.floor(hms.minutes / 10),
+                minutes: hms.minutes % 10,
+                tenSeconds: Math.floor(hms.seconds / 10),
+                seconds: hms.seconds % 10,
+            };
+        },
+    },
+    methods: {
+        forceUpdate() {
+            const value = this.getValue();
+            if (value < Duration.fromMillis(0)) {
+                this.$emit('timedOut');
+                this.value = Duration.fromMillis(0);
+            } else {
+                this.value = value;
+            }
+        },
     },
 };
 </script>
@@ -25,16 +68,26 @@ export default {
 <style lang="sass" scoped>
 @import '../sass/_variables'
 
-.numbers
-    height: 9vw
-    transition: font-size 50ms
+.clock
+    width: 100%
+    display: flex
+    justify-content: center
 
-.clock--big > .numbers
+.digit
     font-size: 9vw
 
-.clock--medium > .numbers
-    font-size: 7vw
+.spin-enter-active, .spin-leave-active
+    transition: transform 250ms
 
-.clock--small > .numbers
-    font-size: 5vw
+.spin-leave-to, .spin-enter-to
+    transform: translateY(-1.25em)
+
+.spin-enter
+    transform: translateY(1.25em)
+
+.digit_wrapper
+    height: 11.25vw
+    overflow-y: hidden
+    display: flex
+    flex-direction: column
 </style>
