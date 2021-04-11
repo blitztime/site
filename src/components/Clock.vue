@@ -25,7 +25,7 @@ export default {
     name: 'Clock',
     props: ['getValue'],
     mounted() {
-        this.$options.updater = window.setInterval(this.forceUpdate, 1000);
+        this.$options.updater = window.setInterval(this.forceUpdate, 10);
     },
     beforeDestroy() {
         window.clearInterval(this.$options.updater);

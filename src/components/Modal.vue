@@ -45,5 +45,5 @@ export default {
 .modal
     background: $bg-colour
     padding: 1rem
-    max-width: calc(100vw - 10rem)
+    width: clamp(33vw, 600px, calc(100vw - 5rem))
 </style>

@@ -252,7 +252,6 @@ export default {
     display: flex
     flex-direction: column
     align-items: center
-    width: min(calc(100vw - 10rem), 33vw)
 
 .modal__title
     margin: 0
