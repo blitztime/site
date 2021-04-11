@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.b0945ecc27d2fdc755c4d305234da81b.js"
+  "/precache-manifest.70d1d7b05d3be2c01d94d73d2c153534.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "blitz.red"});
