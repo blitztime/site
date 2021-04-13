@@ -1,6 +1,7 @@
 <template lang="pug">
 .root
     router-view.main
+    Toasts(:toasts='toasts')
     footer.footer
         .footer__text
             | © Copyright 2021
@@ -8,6 +9,20 @@
                 | Artemis
             | .
 </template>
+
+<script>
+import Toasts from './components/Toasts';
+
+export default {
+    name: 'App',
+    components: { Toasts },
+    data() {
+        return {
+            toasts: [],
+        };
+    },
+};
+</script>
 
 <style lang="sass">
 @import 'sass/_variables'

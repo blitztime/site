@@ -41,8 +41,7 @@ main.timer(v-if='timer')
         .modal__buttons
             button.button(@click='endGame') End Game
             button.button.button--secondary(@click='showEndGame = false') Cancel
-main.loading(v-else)
-    span Loading...
+LoadingScreen(v-else)
 </template>
 
 <script>
@@ -52,10 +51,11 @@ import TimerSide from '../components/TimerSide';
 import Copyable from '../components/Copyable';
 import Modal from '../components/Modal';
 import TimeInput from '../components/TimeInput';
+import LoadingScreen from '../components/LoadingScreen';
 
 export default {
     name: 'Timer',
-    components: { TimerSide, Copyable, Modal, TimeInput },
+    components: { TimerSide, Copyable, Modal, TimeInput, LoadingScreen },
     data() {
         this.$options.socket = getConnection(this.$route.params.id);
         this.$options.socket.addListener('error', this.onError);
