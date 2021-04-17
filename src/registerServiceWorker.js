@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { register } from 'register-service-worker';
+import { notify } from './js/utils';
 
 if (process.env.NODE_ENV === 'production') {
     register(`${process.env.BASE_URL}service-worker.js`, {
@@ -16,18 +17,38 @@ if (process.env.NODE_ENV === 'production') {
             console.log('Content has been cached for offline use.');
         },
         updatefound() {
+            notify({
+                title: 'Downloading Update',
+                message: 'Blitz.Red update is currently downloading...',
+                iconChar: 'i',
+                important: true,
+            });
             console.log('New content is downloading.');
         },
         updated() {
-            console.log('New content is available; please refresh.');
+            notify({
+                title: 'Update Available',
+                message: 'Please reload the page to update.',
+                iconChar: 'X',
+                important: true,
+            });
         },
         offline() {
-            console.log(
-                'No internet connection found. App is running in offline mode.'
-            );
+            notify({
+                title: 'Connection lost!',
+                message:
+                    'Blitz.Red cannot function properly without an Internet connection',
+                iconChar: 'X',
+                important: true,
+            });
         },
         error(error) {
-            console.error('Error during service worker registration:', error);
+            notify({
+                title: 'Internal Error',
+                message: error.toString(),
+                iconChar: 'E',
+                important: true,
+            });
         },
     });
 }

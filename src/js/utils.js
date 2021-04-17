@@ -57,3 +57,15 @@ export function getSide(timerId) {
     if (raw === undefined) return -2;
     return Number.parseInt(raw);
 }
+
+/** Send a notification.
+ *
+ * Fields: title (str), message (str), iconChar (str) and important (bool).
+ */
+export function notify(notification) {
+    document.dispatchEvent(
+        new CustomEvent('appNotification', {
+            detail: notification,
+        })
+    );
+}

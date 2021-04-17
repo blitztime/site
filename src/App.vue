@@ -1,7 +1,7 @@
 <template lang="pug">
 .root
     router-view.main
-    Toasts(:toasts='toasts')
+    Toasts(:toasts='toasts', @onDelete='removeToast')
     footer.footer
         .footer__text
             | © Copyright 2021
@@ -19,7 +19,32 @@ export default {
     data() {
         return {
             toasts: [],
+            nextId: 0,
         };
+    },
+    mounted() {
+        document.addEventListener('appNotification', this.onAppNotification);
+    },
+    beforeDestroy() {
+        document.removeEventListener('appNotification', this.onAppNotification);
+    },
+    methods: {
+        onAppNotification(event) {
+            const toast = event.detail;
+            toast.id = this.nextId++;
+            this.toasts.push(toast);
+            window.setTimeout(() => {
+                this.removeToast(toast.id);
+            }, 5000);
+        },
+        removeToast(id) {
+            for (const [idx, toast] of this.toasts.entries()) {
+                if (toast.id === id) {
+                    this.toasts.splice(idx, 1);
+                    return;
+                }
+            }
+        },
     },
 };
 </script>

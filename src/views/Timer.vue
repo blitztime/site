@@ -46,7 +46,7 @@ LoadingScreen(v-else)
 
 <script>
 import { Duration } from 'luxon';
-import { getConnection, getSide } from '../js/utils';
+import { getConnection, getSide, notify } from '../js/utils';
 import TimerSide from '../components/TimerSide';
 import Copyable from '../components/Copyable';
 import Modal from '../components/Modal';
@@ -152,8 +152,12 @@ export default {
     },
     methods: {
         onError(error) {
-            // TODO: Display the error.
-            console.log(error);
+            notify({
+                title: 'Internal Error',
+                message: error.toString(),
+                iconChar: 'E',
+                important: true,
+            });
         },
         onState(timer) {
             this.timer = timer;

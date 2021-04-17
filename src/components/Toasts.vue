@@ -3,7 +3,8 @@
     transition-group(name='slide', tag='div')
         .toast(
                 v-for='toast in toasts',
-                :key='`${_uid}-${toasts.indexOf(toast)}`')
+                :key='`${_uid}-${toast.id}`',
+                @click='$emit("onDelete", toast.id)')
             .toast__icon(v-if='toast.iconChar') {{ toast.iconChar }}
             .toast__body(:class='{ "toast__body--important": toast.important }')
                 .toast__title {{ toast.title }}
@@ -75,4 +76,11 @@ export default {
 
 .toast__body--important .toast__message
     color: $bg-colour
+
+.slide-enter-active, .slide-leave-active, .slide-move
+    transition: all 500ms
+
+.slide-enter, .slide-leave-to
+    opacity: 0
+    transform: translateX(min(max(400px, 33vw) + 6.6rem, calc(100vw - 2px)))
 </style>
