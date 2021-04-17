@@ -8,8 +8,8 @@ main.create
             @removeStage='stages.splice(idx, 1)')
     .add_stage(@click='addStage') +
     .as_player_input
-        span Join as Player 1?
-        Checkbox(type='checkbox', v-model='asPlayer')
+        span Manage instead of playing
+        Checkbox(type='checkbox', v-model='asManager')
     button.button(@click='start') Start
 </template>
 
@@ -35,7 +35,7 @@ export default {
                     initialTime: Duration.fromMillis(30 * 60 * 1000),
                 },
             ],
-            asPlayer: true,
+            asManager: false,
             expandedStage: 0,
         };
     },
@@ -44,9 +44,9 @@ export default {
             const stageSettings = this.stages.map(StageSettingsModel.create);
             const creds = await client.createTimer(
                 stageSettings,
-                !this.asPlayer
+                this.asManager
             );
-            storeConnection(creds, this.asPlayer ? 0 : -1);
+            storeConnection(creds, this.asManager ? -1 : 0);
             this.$router.push(`/timer/${creds.timer}`);
         },
         addStage() {

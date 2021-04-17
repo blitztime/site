@@ -11,7 +11,7 @@
         span.side__timer__title Game Timer
         Clock(
             :getValue='() => { return side.totalTimeRemaining() }',
-            @timedOut='onTimeOut')
+            @timedOut='$emit("timedOut")')
     .side__invite(v-else)
         h3.side__invite__title Not Joined
         p.side__invite__description This link can be used to join:
@@ -31,12 +31,6 @@ export default {
         return {
             link: `${window.location.origin}/t/${timer}/${this.number}`,
         };
-    },
-    methods: {
-        onTimeOut() {
-            if (this.userSide < 0) return;
-            this.$emit('timedOut');
-        },
     },
 };
 </script>

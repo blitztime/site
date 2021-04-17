@@ -7,13 +7,13 @@ main.timer(v-if='timer')
     h2.subtitle(v-if='timer.turnNumber >= 0 && !timer.hasEnded')
         span Stage {{ stageNumber }}; +{{ stageIncrementPerTurn }} per turn
     h2.subtitle(v-if='timer.hasEnded') {{ endReason }}
-    .button_wrapper(v-if='side !== -2')
+    .button_wrapper(v-if='canManage')
         button.button(v-if='canAddTime', @click='showAddTime = true') Add Time
         button.button(v-if='canStart', @click='startGame') Start Timer
-        button.button(v-if='isTurn', @click='endTurn') End Turn
-        button.button(v-if='canEnd', @click='showEndGame = true') End Timer
+        button.button(v-if='canEndTurn', @click='endTurn') End Turn
+        button.button(v-if='canEndGame', @click='showEndGame = true') End Timer
         span.button_placeholder(
-            v-if='!(canAddTime || canStart || isTurn || canEnd)')
+            v-if='!(canAddTime || canStart || canEndTurn || canEndGame)')
     .sides
         TimerSide(
             :side='timer.home', :number='0', :userSide='side',
@@ -88,21 +88,34 @@ export default {
                 (this.side === 1 && this.timer.away.isTurn)
             );
         },
-        canEnd() {
+        canManage() {
             if (!this.timer) return false;
-            return (
-                this.side >= 0 && this.timer.startedAt && !this.timer.hasEnded
-            );
+            if (this.timer.hasEnded || !this.timer.startedAt) return false;
+            if (this.timer.managed) return this.side === -1;
+            return this.side >= 0;
+        },
+        canEndTurn() {
+            if (!this.timer) return false;
+            if (this.timer.hasEnded || !this.timer.startedAt) return false;
+            if (this.timer.managed) return this.side === -1;
+            return this.isTurn;
+        },
+        canEndGame() {
+            if (!this.timer) return false;
+            if (this.timer.hasEnded || !this.timer.startedAt) return false;
+            if (this.timer.managed) return this.side === -1;
+            return this.side >= 0;
         },
         canStart() {
             if (!this.timer) return false;
-            return this.side === 0 && this.timer.away && !this.timer.startedAt;
+            if (this.timer.hasEnded || this.timer.startedAt) return false;
+            if (this.timer.managed) return this.side === -1;
+            return this.side === 0;
         },
         canAddTime() {
             if (!this.timer) return false;
-            return (
-                this.side === -1 && this.timer.startedAt && !this.timer.hasEnded
-            );
+            if (this.timer.hasEnded || this.timer.startedAt) return false;
+            return this.side === -1;
         },
         stageNumber() {
             return this.timer.settings.indexOf(this.timer.stageSettings) + 1;
@@ -155,7 +168,7 @@ export default {
             if (number === this.side) {
                 this.$options.socket.endTurn();
             } else {
-                this.$options.socket.opponentTimedOut();
+                this.$options.socket.timeout();
             }
         },
         addTime() {
