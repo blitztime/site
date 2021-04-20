@@ -114,7 +114,7 @@ export default {
         },
         canAddTime() {
             if (!this.timer) return false;
-            if (this.timer.hasEnded || this.timer.startedAt) return false;
+            if (this.timer.hasEnded || !this.timer.startedAt) return false;
             return this.side === -1;
         },
         stageNumber() {
