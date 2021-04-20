@@ -22,13 +22,18 @@ export default {
     methods: {
         update($event) {
             const keyCode = $event.keyCode ? $event.keyCode : $event.which;
-            if (keyCode < 48 || keyCode > 48 + this.max) {
-                $event.preventDefault();
+            let number;
+            if (keyCode >= 48 && keyCode <= 48 + this.max) {
+                number = keyCode - 48;
+            } else if (keyCode >= 96 && keyCode <= 96 + this.max) {
+                number = keyCode - 96;
             } else {
-                this.inputValue = keyCode - 48;
-                this.$emit('input', keyCode - 48);
                 $event.preventDefault();
+                return;
             }
+            this.inputValue = number;
+            this.$emit('input', number);
+            $event.preventDefault();
         },
     },
 };
