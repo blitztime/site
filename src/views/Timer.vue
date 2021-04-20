@@ -90,7 +90,7 @@ export default {
         },
         canManage() {
             if (!this.timer) return false;
-            if (this.timer.hasEnded || !this.timer.startedAt) return false;
+            if (this.timer.hasEnded) return false;
             if (this.timer.managed) return this.side === -1;
             return this.side >= 0;
         },
