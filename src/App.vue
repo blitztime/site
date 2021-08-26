@@ -82,4 +82,12 @@ body
 .switcher
     position: absolute
     left: 0.5rem
+
+@media only screen and (max-width: 800px)
+    .switcher
+        position: relative
+        margin-bottom: 1rem
+
+    .footer
+        height: 6rem
 </style>
