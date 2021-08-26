@@ -3,6 +3,7 @@
     router-view.main
     Toasts(:toasts='toasts', @onDelete='removeToast')
     footer.footer
+        ColourSwitcher.switcher
         .footer__text
             | © Copyright 2021
             a.footer__link(href='https://artemisdev.xyz', target="_blank")
@@ -11,11 +12,12 @@
 </template>
 
 <script>
+import ColourSwitcher from './components/ColourSwitcher';
 import Toasts from './components/Toasts';
 
 export default {
     name: 'App',
-    components: { Toasts },
+    components: { ColourSwitcher, Toasts },
     data() {
         return {
             toasts: [],
@@ -76,4 +78,8 @@ body
     color: $bg-colour
     padding: 5px
     margin: 5px
+
+.switcher
+    position: absolute
+    left: 0.5rem
 </style>
